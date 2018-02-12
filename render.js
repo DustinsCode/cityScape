@@ -47,8 +47,8 @@ function main() {
     projMat = mat4.create();
     gl.uniformMatrix4fv (projUnif, false, projMat);
     viewMat = mat4.lookAt(mat4.create(),
-        vec3.fromValues (2, 4, 2),  // eye coord
-        vec3.fromValues (0, 0, 1),  // gaze point
+        vec3.fromValues (-1, -1, 2),  // eye coord
+        vec3.fromValues (0.5, 0.5, 1),  // gaze point
         vec3.fromValues (0, 0, 1)   // Z is up
     );
     gl.uniformMatrix4fv (viewUnif, false, viewMat);
@@ -79,25 +79,37 @@ function getRandomArbitrary(min, max) {
 function createObject() {
 
 
-    let obj = new PolygonalPrism(gl,
-        {
-            topRadius: getRandomArbitrary(0.0, 1.0),
-            bottomRadius: getRandomArbitrary(0.0, 1.0),
-            numSides: getRandomArbitrary(4.0,8.0),
-            height: getRandomArbitrary(0.5, 4.0),
-            //topColor: vec3.fromValues(1,0,0),
-            //bottomColor: vec3.fromValues(1,1,1)
-        });
-    /*
-    let cone = new Cone(gl, {
-        radius: 0.6,
-        height: 1.2
-    });
-    */
-    let cone = new Sphere(gl, 0.5, 5);
-    mat4.translate (cone.coordFrame, cone.coordFrame, vec3.fromValues(1, 0, 0));
-    allObjs.push(obj, cone);
+    for(var i = 0; i < 10; i ++) {
+
+        for(var j = 0; j<10; j++) {
+            let chance = Math.random();
+
+            if(chance < 0.5) {
+                let obj = new PolygonalPrism(gl,
+                    {
+                        topRadius: getRandomArbitrary(0.0, 0.4),
+                        bottomRadius: getRandomArbitrary(0.0, 0.4),
+                        numSides: getRandomArbitrary(4.0, 8.0),
+                        height: getRandomArbitrary(0.5, 2.0),
+                        //topColor: vec3.fromValues(1,0,0),
+                        //bottomColor: vec3.fromValues(1,1,1)
+                    });
+                mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i , j, 0));
+                allObjs.push(obj);
+            }else{
+                let obj = new Cone(gl, {
+                    radius: getRandomArbitrary(0.001, 0.3),
+                    height: getRandomArbitrary(0.5, 2.0)
+                });
+                mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i, j, 0));
+                allObjs.push(obj);
+            }
+
+        }
+    }
 }
+    //let cone = new Sphere(gl, 0.5, 5);
+
 
 function resizeWindow() {
     let w = window.innerWidth - 16;
