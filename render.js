@@ -10,6 +10,8 @@ let allObjs = [];
 var projUnif;
 var projMat, viewMat;
 
+let camera = mat4.create();
+
 function main() {
     canvas = document.getElementById("my-canvas");
 
@@ -58,8 +60,59 @@ function main() {
 
     createObject();
 
+    window.addEventListener('keydown', event => {
+        let key = String.fromCharCode(event.keyCode);
+       switch(key){
+           case 'W':   //forward
+               mat4.invert(camera, viewMat);
+               mat4.translate(camera, camera, vec3.fromValues(0,0, -.1/2));
+               mat4.invert(viewMat, camera);
+               break;
+           case 'S':   //backward
+               mat4.invert(camera, viewMat);
+               mat4.translate(camera, camera, vec3.fromValues(0,0, .1/2));
+               mat4.invert(viewMat, camera);
+               break;
+           case 'A':   //yaw left
+               mat4.invert(camera, viewMat);
+               mat4.rotateY(camera, camera, .1/2);
+               mat4.invert(viewMat, camera);
+               break;
+           case 'D':   //yaw right
+               mat4.invert(camera, viewMat);
+               mat4.rotateY(camera, camera, -.1/2);
+               mat4.invert(viewMat, camera);
+               break;
+           case 'E':   //pitch up
+               mat4.invert(camera, viewMat);
+               mat4.rotateX(camera, camera, .1/2);
+               mat4.invert(viewMat, camera);
+               break;
+           case 'Q':  //pitch down
+               mat4.invert(camera, viewMat);
+               mat4.rotateX(camera, camera, -.1/2);
+               mat4.invert(viewMat, camera);
+               break;
+           case 'J':  //roll left
+               mat4.invert(camera, viewMat);
+               mat4.rotateZ(camera, camera, -.1/2);
+               mat4.invert(viewMat, camera);
+               break;
+           case 'K':  //roll right
+               mat4.invert(camera, viewMat);
+               mat4.rotateZ(camera, camera, .1/2);
+               mat4.invert(viewMat, camera);
+               break;
+       }
+
+       gl.uniformMatrix4fv(viewUnif, false, viewMat);
+       window.requestAnimFrame(drawScene);
+    });
+
     /* initiate the render request */
     window.requestAnimFrame(drawScene);
+
+
 });
 }
 
@@ -97,10 +150,15 @@ function createObject() {
                 mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i , j, 0));
                 allObjs.push(obj);
             }else{
+                /*
                 let obj = new Cone(gl, {
-                    radius: getRandomArbitrary(0.001, 0.3),
+                    radius: getRandomArbitrary(0.1, 0.3),
                     height: getRandomArbitrary(0.5, 2.0)
                 });
+                */
+
+                let obj = new Sphere(gl,0.5,1);
+
                 mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i, j, 0));
                 allObjs.push(obj);
             }
