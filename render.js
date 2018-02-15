@@ -182,7 +182,7 @@ function createObject() {
                 mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i, j, 0));
                 allObjs.push(obj);
             }else{
-                let obj = new Sphere(gl,0.5,1);
+                let obj = new Sphere(gl,getRandomArbitrary(0.1, 0.4),5);
 
                 mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i, j, 0));
                 allObjs.push(obj);
