@@ -1,5 +1,7 @@
 /**
  * Created by Hans Dulimarta on 2/1/17.
+ *
+ * Modified by Dustin Thurston 2/14/18
  */
 class Sphere extends Object3D {
     /**
@@ -30,26 +32,39 @@ class Sphere extends Object3D {
 
         /* TODO: complete the rest of the code here */
 
-        this.vertices = [seedA, seedB, seedC, seedD];
+        this.vertices = [];
         this.indices = [];
         this.colors = [];
 
-        this.indices.push(0, 1, 2);
-        this.indices.push(0, 2, 3);
-        this.indices.push(1, 2, 3);
-        this.indices.push(0, 1, 3);
+        //pushing initial seed values to vertex array
+        this.vertices.push(seedA[0], seedA[1], seedA[2],
+            seedB[0], seedB[1], seedB[2],
+            seedC[0], seedC[1], seedC[2],
+            seedD[0], seedD[1], seedD[2]);
 
-        this.colors.push[col1[0], col1[1], col1[2]];
-        this.colors.push[col1[0], col1[1], col1[2]];
-        this.colors.push[col1[0], col1[1], col1[2]];
-        this.colors.push[col1[0], col1[1], col1[2]];
+        //this.indices.push(0,1,2,3,4,5,6,7,8,9,10,11);
 
-        /*
+        //this.indices.push(0,3,6,  3,6,9,  0,6,9,  0,3,9);
+
+        //trying to just make the tetrahedron, but it just gives me strange
+        //triangles that only show up at certain angles
+        this.indices.push(0, 1, 2,
+            1,2,3,
+            0,2,3,
+            0,1,3);
+
+
+/*  //THIS IS WHERE I WOULD RECURSIVELY SUBDIVIDE, but I can't get it to work at all.
         this.subDivide(seedA, seedB, seedC, subDiv);
         this.subDivide(seedA, seedC, seedD, subDiv);
         this.subDivide(seedB, seedC, seedD, subDiv);
         this.subDivide(seedA, seedB, seedD, subDiv);
-        */
+*/
+
+        //loop to push random colors to the color array
+        for(let x=0; x< this.vertices.length; x++) {
+            this.colors.push(Math.random());
+        }
 
         console.log(this.indices);
         console.log(this.vertices);
@@ -113,7 +128,15 @@ class Sphere extends Object3D {
             this.subDivide(mp1,mp2,mp3, subDiv-1);
 
         }else{
-            this.indices.push(this.vertices.length-1, this.vertices-2, this.vertices-3);
+
+            //i have no idea what I'm trying to do here.
+            //I can't figure out how to know which indexes to push
+            //or how WebGl knows/reads the indexes
+            var loc = this.vertices.length-1;
+            for(var i = 0; i <=loc; i++){
+                this.indices.push(i, loc, loc-1);
+            }
+
             //console.log(this.indices);
             //this.indices.push(vec3.fromValues(mp1,seed2,mp3));
             //this.indices.push(vec3.fromValues(mp2,mp3,seed3));

@@ -1,7 +1,7 @@
 /**
  * Created by Hans Dulimarta.
  *
- * Modified by Dustin Thurston
+ * Modified by Dustin Thurston 2/14/18
  */
 let canvas
 let gl;
@@ -65,7 +65,7 @@ function main() {
        switch(key){
            case 'W':   //forward
                mat4.invert(camera, viewMat);
-               mat4.translate(camera, camera, vec3.fromValues(0,0, -.1/4));
+               mat4.translate(camera, camera, vec3.fromValues(0,0, -.1/2));
                mat4.invert(viewMat, camera);
                break;
            case 'S':   //backward
@@ -95,12 +95,32 @@ function main() {
                break;
            case 'J':  //roll left
                mat4.invert(camera, viewMat);
+               mat4.rotateZ(camera, camera, .1/2);
+               mat4.invert(viewMat, camera);
+               break;
+           case 'L':  //roll right
+               mat4.invert(camera, viewMat);
                mat4.rotateZ(camera, camera, -.1/2);
                mat4.invert(viewMat, camera);
                break;
-           case 'K':  //roll right
+           case 'I':
                mat4.invert(camera, viewMat);
-               mat4.rotateZ(camera, camera, .1/2);
+               mat4.translate(camera, camera, vec3.fromValues(0,.1/2, 0));
+               mat4.invert(viewMat, camera);
+               break;
+           case 'K':
+               mat4.invert(camera, viewMat);
+               mat4.translate(camera, camera, vec3.fromValues(0,-.1/2, 0));
+               mat4.invert(viewMat, camera);
+               break;
+           case 'U':
+               mat4.invert(camera, viewMat);
+               mat4.translate(camera, camera, vec3.fromValues(-.1/2,0, 0));
+               mat4.invert(viewMat, camera);
+               break;
+           case 'O':
+               mat4.invert(camera, viewMat);
+               mat4.translate(camera, camera, vec3.fromValues(.1/2,0, 0));
                mat4.invert(viewMat, camera);
                break;
        }
@@ -129,6 +149,10 @@ function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+function getRandomInt(max, min) {
+    return Math.floor(Math.random() * Math.floor(max))+min;
+}
+
 function createObject() {
 
 
@@ -136,27 +160,28 @@ function createObject() {
 
         for(var j = 0; j<10; j++) {
             let chance = Math.random();
-
-            if(chance < 0.5) {
+            //1/3 chance to get either a polygonal prism, a cone, or a "sphere" (if it worked :/ )
+            if(chance <= 0.333333) {
                 let obj = new PolygonalPrism(gl,
                     {
                         topRadius: getRandomArbitrary(0.0, 0.4),
                         bottomRadius: getRandomArbitrary(0.0, 0.4),
-                        numSides: getRandomArbitrary(4.0, 8.0),
+                        numSides: getRandomInt(6,4),
                         height: getRandomArbitrary(0.5, 2.0),
                         //topColor: vec3.fromValues(1,0,0),
                         //bottomColor: vec3.fromValues(1,1,1)
                     });
                 mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i , j, 0));
                 allObjs.push(obj);
-            }else{
-                /*
+            }else if(chance >0.333333 && chance <= 0.666666) {
+
                 let obj = new Cone(gl, {
                     radius: getRandomArbitrary(0.1, 0.3),
                     height: getRandomArbitrary(0.5, 2.0)
                 });
-                */
-
+                mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i, j, 0));
+                allObjs.push(obj);
+            }else{
                 let obj = new Sphere(gl,0.5,1);
 
                 mat4.translate (obj.coordFrame, obj.coordFrame, vec3.fromValues(i, j, 0));
@@ -166,7 +191,6 @@ function createObject() {
         }
     }
 }
-    //let cone = new Sphere(gl, 0.5, 5);
 
 
 function resizeWindow() {
