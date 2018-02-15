@@ -32,18 +32,31 @@ class Sphere extends Object3D {
 
         this.vertices = [seedA, seedB, seedC, seedD];
         this.indices = [];
+        this.colors = [];
 
+        this.indices.push(0, 1, 2);
+        this.indices.push(0, 2, 3);
+        this.indices.push(1, 2, 3);
+        this.indices.push(0, 1, 3);
+
+        this.colors.push[col1[0], col1[1], col1[2]];
+        this.colors.push[col1[0], col1[1], col1[2]];
+        this.colors.push[col1[0], col1[1], col1[2]];
+        this.colors.push[col1[0], col1[1], col1[2]];
+
+        /*
         this.subDivide(seedA, seedB, seedC, subDiv);
         this.subDivide(seedA, seedC, seedD, subDiv);
         this.subDivide(seedB, seedC, seedD, subDiv);
         this.subDivide(seedA, seedB, seedD, subDiv);
+        */
 
         console.log(this.indices);
         console.log(this.vertices);
 
         this.colorBuff = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuff);
-        gl.bufferData(gl.ARRAY_BUFFER, Float32Array.from([col1[0],col1[1],col1[2]]), gl.STATIC_DRAW);
+        gl.bufferData(gl.ARRAY_BUFFER, Float32Array.from(this.colors), gl.STATIC_DRAW);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuff);
         gl.bufferData(gl.ARRAY_BUFFER, Float32Array.from(this.vertices), gl.STATIC_DRAW);

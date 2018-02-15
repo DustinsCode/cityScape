@@ -65,7 +65,7 @@ function main() {
        switch(key){
            case 'W':   //forward
                mat4.invert(camera, viewMat);
-               mat4.translate(camera, camera, vec3.fromValues(0,0, -.1/2));
+               mat4.translate(camera, camera, vec3.fromValues(0,0, -.1/4));
                mat4.invert(viewMat, camera);
                break;
            case 'S':   //backward

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29c1d9d3-9eab-46b4-983c-f6b816cb08ba" name="Default" comment="Small city is generated.">
+    <list default="true" id="29c1d9d3-9eab-46b4-983c-f6b816cb08ba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/geometry/Sphere.js" afterPath="$PROJECT_DIR$/geometry/Sphere.js" />
       <change beforePath="$PROJECT_DIR$/render.js" afterPath="$PROJECT_DIR$/render.js" />
@@ -21,28 +21,28 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
+            <state relative-caret-position="70">
               <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sphere.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Sphere.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geometry/Sphere.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="103" column="14" lean-forward="false" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+            <state relative-caret-position="198">
+              <caret line="39" column="35" lean-forward="true" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="render.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="render.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/render.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="159" column="45" lean-forward="false" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
+            <state relative-caret-position="-589">
+              <caret line="67" column="72" lean-forward="false" selection-start-line="67" selection-start-column="72" selection-end-line="67" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -179,7 +179,7 @@
       <workItem from="1518393477892" duration="606000" />
       <workItem from="1518447407589" duration="42000" />
       <workItem from="1518447453412" duration="3059000" />
-      <workItem from="1518563984575" duration="7935000" />
+      <workItem from="1518563984575" duration="9007000" />
     </task>
     <task id="LOCAL-00001" summary="Small city is generated.">
       <created>1518449853776</created>
@@ -188,11 +188,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518449853776</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Flying works.  Spheres do not.">
+      <created>1518633420092</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1518633420093</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18634000" />
+    <option name="totallyTimeSpent" value="19706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -225,7 +232,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Small city is generated." />
-    <option name="LAST_COMMIT_MESSAGE" value="Small city is generated." />
+    <MESSAGE value="Flying works.  Spheres do not." />
+    <option name="LAST_COMMIT_MESSAGE" value="Flying works.  Spheres do not." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -449,26 +457,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/render.js">
+    <entry file="file://$PROJECT_DIR$/geometry/Sphere.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="159" column="45" lean-forward="false" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
+        <state relative-caret-position="198">
+          <caret line="39" column="35" lean-forward="true" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
+        <state relative-caret-position="70">
           <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geometry/Sphere.js">
+    <entry file="file://$PROJECT_DIR$/render.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="103" column="14" lean-forward="false" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+        <state relative-caret-position="-589">
+          <caret line="67" column="72" lean-forward="false" selection-start-line="67" selection-start-column="72" selection-end-line="67" selection-end-column="72" />
           <folding />
         </state>
       </provider>
